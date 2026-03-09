@@ -1,0 +1,397 @@
+/* ===== Invoice Preview Styles ===== */
+/* Pixel-perfect match to the reference invoice design */
+
+.invoice-preview {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    max-height: 100vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
+}
+
+.invoice-preview::-webkit-scrollbar {
+    width: 6px;
+}
+
+.invoice-preview::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+}
+
+/* A4 Page Container */
+.invoice-page {
+    width: 210mm;
+    min-height: 297mm;
+    background: #f0f0e4;
+    padding: 32px 40px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: #1a1a1a;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+}
+
+/* Header */
+.inv-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+}
+
+.inv-company-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0;
+    color: #1a1a1a;
+}
+
+.inv-badge {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #dc3c32;
+    letter-spacing: 0.04em;
+}
+
+/* Company + Contact Row */
+.inv-company-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.inv-company-info,
+.inv-contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.inv-company-info strong,
+.inv-contact-info strong {
+    font-weight: 700;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.inv-address {
+    white-space: pre-line;
+    line-height: 1.5;
+    color: #444;
+}
+
+.inv-contact-info span {
+    color: #444;
+    line-height: 1.5;
+}
+
+/* Invoice Meta Bar */
+.inv-meta-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: rgba(0, 0, 0, 0.03);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 12px 0;
+    margin-bottom: 20px;
+}
+
+.inv-meta-item {
+    display: flex;
+    flex-direction: column;
+    padding: 0 12px;
+}
+
+.inv-meta-label {
+    font-size: 9px;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+}
+
+.inv-meta-value {
+    font-size: 12px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+/* Client Row */
+.inv-client-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+    padding: 14px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.inv-client-block {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.inv-client-block strong {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #888;
+    margin-bottom: 4px;
+}
+
+.inv-client-name {
+    font-weight: 600;
+    font-size: 12px;
+    color: #1a1a1a;
+}
+
+.inv-client-address {
+    white-space: pre-line;
+    line-height: 1.6;
+    color: #444;
+    font-size: 11px;
+}
+
+/* Line Items Table */
+.inv-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+}
+
+.inv-table thead {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.inv-table th {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #555;
+    padding: 10px 8px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.inv-table td {
+    padding: 10px 8px;
+    color: #333;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    vertical-align: top;
+}
+
+.inv-table .col-num {
+    width: 30px;
+    text-align: center;
+}
+
+.inv-table .col-desc {
+    width: auto;
+}
+
+.inv-table .col-qty,
+.inv-table .col-dis,
+.inv-table .col-gst {
+    width: 55px;
+    text-align: center;
+}
+
+.inv-table .col-rate,
+.inv-table .col-total {
+    width: 80px;
+    text-align: right;
+}
+
+.inv-table th.col-rate,
+.inv-table th.col-total {
+    text-align: right;
+}
+
+.inv-table th.col-qty,
+.inv-table th.col-dis,
+.inv-table th.col-gst {
+    text-align: center;
+}
+
+/* Summary Row */
+.inv-summary-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    padding: 14px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.inv-summary-left {
+    display: flex;
+    gap: 32px;
+}
+
+.inv-payment-method,
+.inv-in-words {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.inv-payment-method strong,
+.inv-in-words strong {
+    font-size: 10px;
+    font-weight: 700;
+    color: #555;
+}
+
+.inv-payment-method span,
+.inv-in-words span {
+    font-size: 11px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.inv-summary-right {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: stretch;
+}
+
+.inv-total-line {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 8px;
+    font-size: 11px;
+    color: #444;
+}
+
+.inv-total-line.inv-grand-total {
+    font-weight: 700;
+    font-size: 13px;
+    color: #1a1a1a;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 8px;
+    margin-top: 2px;
+}
+
+/* Signature Row */
+.inv-signature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+    padding: 16px 0;
+}
+
+.inv-sig-block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.inv-sig-block strong {
+    font-size: 11px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.inv-sig-block span {
+    font-size: 11px;
+    color: #555;
+}
+
+.inv-sig-right {
+    text-align: right;
+}
+
+/* Payment Footer */
+.inv-footer {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.03);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 0 0 4px 4px;
+    margin: 0 -40px -32px -40px;
+    padding: 24px 40px 32px;
+}
+
+.inv-bank-info strong {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1a1a1a;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.inv-bank-details {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-size: 11px;
+    color: #444;
+    line-height: 1.5;
+}
+
+.inv-bank-label {
+    font-weight: 700;
+    color: #dc3c32;
+    display: inline-block;
+    min-width: 65px;
+}
+
+.inv-qr-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.inv-qr-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    font-size: 10px;
+    color: #333;
+}
+
+.inv-qr-info strong {
+    font-weight: 700;
+    color: #dc3c32;
+}
+
+.inv-qr-info span {
+    font-weight: 600;
+    color: #dc3c32;
+}
+
+/* Print styles */
+@media print {
+    .invoice-preview {
+        padding: 0;
+        overflow: visible;
+    }
+
+    .invoice-page {
+        box-shadow: none;
+        border-radius: 0;
+        width: 100%;
+        min-height: auto;
+    }
+}
