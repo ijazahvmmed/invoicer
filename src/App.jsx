@@ -22,6 +22,7 @@ const defaultData = {
     invoiceNumber: generateInvoiceNumber(1),
     invoiceDate: new Date().toISOString().split('T')[0],
     dueDate: '',
+    hasGST: true,
   },
   lineItems: [
     { description: 'Shopify Store Development', qty: 1, rate: 0, discount: 0, gstPercent: 18 },
@@ -97,28 +98,41 @@ function App() {
 
   return (
     <div className="generator">
-      {/* Top Bar */}
-      <div className="gen-topbar">
-        <button className="btn-back" onClick={() => setView('landing')}>
-          ← Back
-        </button>
-        <h1 className="gen-topbar-title">Invoice Generator</h1>
-        <div className="gen-topbar-actions">
-          <button className="btn-secondary" onClick={handlePrint}>
-            🖨️ Print
-          </button>
-          <button className="btn-primary btn-sm" onClick={handleExportPdf} disabled={exporting}>
-            {exporting ? '⏳ Generating...' : '📥 Download PDF'}
-          </button>
+      {/* Global Top Bar */}
+      <header className="app-header">
+        <div className="logo-group" onClick={() => setView('landing')} style={{ cursor: 'pointer' }}>
+          <span className="logo-icon">🧾</span>
+          <span className="logo-text">Create Invoice</span>
         </div>
-      </div>
+        <div className="theme-toggle">
+          {/* Mock theme toggle */}
+          <div className="toggle-pill">
+            <div className="toggle-thumb"></div>
+          </div>
+        </div>
+      </header>
 
       {/* Split Layout */}
       <div className="gen-layout">
+        {/* Left Side: Form */}
         <div className="gen-form-panel">
+          <div className="panel-toolbar form-toolbar">
+            <button className="tool-btn"><span className="icon">⚠️</span> Errors</button>
+            <button className="tool-btn"><span className="icon">📥</span> Import</button>
+          </div>
           <InvoiceForm data={data} setData={setData} />
         </div>
+
+        {/* Right Side: Preview */}
         <div className="gen-preview-panel">
+          <div className="panel-toolbar preview-toolbar">
+            <button className="tool-btn-secondary" onClick={handlePrint} style={{ marginRight: '10px' }}>
+              🖨️ Print
+            </button>
+            <button className="btn-primary-action" onClick={handleExportPdf} disabled={exporting}>
+              <span className="icon">📥</span> {exporting ? 'Downloading...' : 'Download'}
+            </button>
+          </div>
           <InvoicePreview data={data} />
         </div>
       </div>

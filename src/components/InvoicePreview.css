@@ -2,13 +2,14 @@
 /* Pixel-perfect match to the reference invoice design */
 
 .invoice-preview {
+    flex: 1;
     display: flex;
     justify-content: center;
-    padding: 2rem;
-    max-height: 100vh;
+    padding: 2.5rem;
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
+    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+    background: transparent;
 }
 
 .invoice-preview::-webkit-scrollbar {

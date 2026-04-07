@@ -140,6 +140,10 @@ export default function InvoiceForm({ data, setData }) {
                                 <label>Due Date</label>
                                 <input type="date" value={data.meta.dueDate} onChange={e => updateField('meta', 'dueDate', e.target.value)} />
                             </div>
+                            <div className="form-group full-width" style={{ flexDirection: 'row', alignItems: 'center', gap: '0.75rem', marginTop: '0.5rem', background: 'rgba(255,255,255,0.02)', padding: '0.75rem', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.08)' }}>
+                                <input type="checkbox" checked={data.meta.hasGST !== false} onChange={e => updateField('meta', 'hasGST', e.target.checked)} style={{ margin: 0, width: '18px', height: '18px', cursor: 'pointer' }} />
+                                <label style={{ margin: 0, textTransform: 'none', fontSize: '0.85rem', cursor: 'pointer' }} onClick={() => updateField('meta', 'hasGST', data.meta.hasGST === false ? true : false)}>Enable GST Calculations</label>
+                            </div>
                         </div>
                     </div>
                 )}
@@ -164,7 +168,7 @@ export default function InvoiceForm({ data, setData }) {
                                             <button type="button" className="btn-remove" onClick={() => removeLineItem(i)} title="Remove item">✕</button>
                                         )}
                                     </div>
-                                    <div className="form-grid line-item-grid">
+                                    <div className="form-grid line-item-grid" style={{ gridTemplateColumns: data.meta.hasGST !== false ? 'repeat(4, 1fr)' : 'repeat(3, 1fr)' }}>
                                         <div className="form-group full-width">
                                             <label>Description</label>
                                             <input type="text" value={item.description} onChange={e => updateLineItem(i, 'description', e.target.value)} placeholder="Website Design" />
@@ -181,10 +185,12 @@ export default function InvoiceForm({ data, setData }) {
                                             <label>Discount (₹)</label>
                                             <input type="number" min="0" value={item.discount} onChange={e => updateLineItem(i, 'discount', e.target.value)} />
                                         </div>
-                                        <div className="form-group">
-                                            <label>GST %</label>
-                                            <input type="number" min="0" max="100" value={item.gstPercent} onChange={e => updateLineItem(i, 'gstPercent', e.target.value)} />
-                                        </div>
+                                        {data.meta.hasGST !== false && (
+                                            <div className="form-group">
+                                                <label>GST %</label>
+                                                <input type="number" min="0" max="100" value={item.gstPercent} onChange={e => updateLineItem(i, 'gstPercent', e.target.value)} />
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             ))}

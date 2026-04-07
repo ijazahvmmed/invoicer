@@ -10,9 +10,10 @@ function formatDate(dateStr) {
 }
 
 export default function InvoicePreview({ data }) {
+    const hasGST = data.meta.hasGST !== false;
     const subtotal = calcSubtotal(data.lineItems);
-    const totalGST = calcTotalGST(data.lineItems);
-    const grandTotal = calcGrandTotal(data.lineItems);
+    const totalGST = hasGST ? calcTotalGST(data.lineItems) : 0;
+    const grandTotal = subtotal + totalGST;
     const amountInWords = numberToIndianWords(grandTotal);
     const upiLink = data.payment.upiId ? `upi://pay?pa=${data.payment.upiId}&pn=${encodeURIComponent(data.company.name)}&am=${grandTotal}&cu=INR` : '';
 
@@ -82,13 +83,13 @@ export default function InvoicePreview({ data }) {
                             <th className="col-qty">Qty.</th>
                             <th className="col-rate">Rate (₹)</th>
                             <th className="col-dis">Dis.</th>
-                            <th className="col-gst">GST</th>
+                            {hasGST && <th className="col-gst">GST</th>}
                             <th className="col-total">Total (₹)</th>
                         </tr>
                     </thead>
                     <tbody>
                         {data.lineItems.map((item, i) => {
-                            const { base, total } = calcLineItem(item.qty, item.rate, item.discount, item.gstPercent);
+                            const { base } = calcLineItem(item.qty, item.rate, item.discount, item.gstPercent);
                             return (
                                 <tr key={i}>
                                     <td className="col-num">{i + 1}</td>
@@ -96,7 +97,7 @@ export default function InvoicePreview({ data }) {
                                     <td className="col-qty">{item.qty} U</td>
                                     <td className="col-rate">{formatIndianNumber(item.rate)}</td>
                                     <td className="col-dis">{item.discount}</td>
-                                    <td className="col-gst">{item.gstPercent}</td>
+                                    {hasGST && <td className="col-gst">{item.gstPercent}</td>}
                                     <td className="col-total">{formatIndianNumber(base)}</td>
                                 </tr>
                             );
@@ -121,10 +122,12 @@ export default function InvoicePreview({ data }) {
                             <span>Sub Total</span>
                             <span>{formatIndianNumber(subtotal)}</span>
                         </div>
-                        <div className="inv-total-line">
-                            <span>GST</span>
-                            <span>{formatIndianNumber(totalGST)}</span>
-                        </div>
+                        {hasGST && (
+                            <div className="inv-total-line">
+                                <span>GST</span>
+                                <span>{formatIndianNumber(totalGST)}</span>
+                            </div>
+                        )}
                         <div className="inv-total-line inv-grand-total">
                             <span>Total</span>
                             <span>{formatIndianNumber(grandTotal)}</span>

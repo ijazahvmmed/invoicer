@@ -1,5 +1,5 @@
 .invoice-form {
-  height: calc(100vh - 65px);
+  flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: thin;
