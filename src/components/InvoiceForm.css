@@ -1,9 +1,15 @@
 .invoice-form {
   padding: 2rem;
-  max-height: 100vh;
+  height: calc(100vh - 65px);
   overflow-y: auto;
+  overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: rgba(255,255,255,0.15) transparent;
+  box-sizing: border-box;
+}
+
+.invoice-form * {
+  box-sizing: border-box;
 }
 
 .invoice-form::-webkit-scrollbar {
