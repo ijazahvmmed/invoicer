@@ -7,16 +7,16 @@ import './App.css';
 
 const defaultData = {
   company: {
-    name: 'INNOVUS',
-    address: '67, Navniman Society, Pratap Nagar,\nNagpur, Maharashtra - 440022\nIndia',
-    website: 'www.innovustech.in',
-    phone: '7709501644',
-    email: 'hello@innovustech.in',
+    name: 'CASCON',
+    address: 'Kasim Lane, Kaloor,\nKochi, Kerala\nIndia',
+    website: 'www.wecascon.com',
+    phone: '8943818733',
+    email: 'hello@wecascon.com',
   },
   client: {
-    name: 'Nike Inc.',
-    address: 'Nike One Way, Hollywood Blv.,\nLos Angeles, 110022 CA,\nUSA',
-    shippedTo: 'Nike Inc. Hollywood Blv.,\nLos Angeles,\n110022 CA,\nUSA',
+    name: 'Client Name',
+    address: '',
+    shippedTo: '',
   },
   meta: {
     invoiceNumber: generateInvoiceNumber(1),
@@ -24,22 +24,22 @@ const defaultData = {
     dueDate: '',
   },
   lineItems: [
-    { description: 'Website Design', qty: 1, rate: 50000, discount: 0, gstPercent: 9 },
-    { description: 'Website Development', qty: 1, rate: 20000, discount: 0, gstPercent: 9 },
-    { description: 'UX Design', qty: 1, rate: 20000, discount: 0, gstPercent: 9 },
-    { description: 'Website Copywriting', qty: 1, rate: 10000, discount: 0, gstPercent: 9 },
+    { description: 'Shopify Store Development', qty: 1, rate: 0, discount: 0, gstPercent: 18 },
+    { description: 'Meta Ads Management', qty: 1, rate: 0, discount: 0, gstPercent: 18 },
+    { description: 'AI Video Production', qty: 1, rate: 0, discount: 0, gstPercent: 18 },
+    { description: 'AI Product Photography', qty: 1, rate: 0, discount: 0, gstPercent: 18 },
   ],
   payment: {
-    method: 'Cash',
-    accountNumber: '510101006820471',
-    accountName: 'Innovus Tech',
-    ifsc: 'UBIN0933465',
-    bank: 'Union Bank Of India,\nPratapnagar branch, Nagpur, MH',
-    upiId: 'innovustech@uboi',
+    method: 'Bank Transfer',
+    accountNumber: '55550128728894',
+    accountName: 'Ijas Ahammed',
+    ifsc: 'FDRL0005555',
+    bank: 'Federal Bank,\nKaloor Branch, Kochi, KL',
+    upiId: 'ijasa95@fifederal',
   },
   signature: {
-    acceptedBy: 'Nike Inc.',
-    signedBy: 'Innovus Tech',
+    acceptedBy: 'Client Name',
+    signedBy: 'Cascon',
   },
 };
 
